@@ -4,12 +4,6 @@ import helmet from 'helmet';
 import { AppModule } from './app.module';
 import { config } from './app/config';
 
-// async function bootstrap() {
-//   const app = await NestFactory.create(AppModule);
-//   await app.listen(4800);
-// }
-// bootstrap();
-
 async function bootstrap() {
   // config.update({});
   const port = config.port;

@@ -13,28 +13,19 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Product {
-  createdAt        DateTime        @default(now())
-  updatedAt        DateTime        @updatedAt
-  deletedAt        DateTime?
-  id               String          @id @default(uuid())
-  name             String
-  price            Int
-  category         String
-  image            String
-  currency         String          @default("$")
-  isApplyImportTax Boolean         @default(false)
-  selectProduct    SelectProduct[]
+model Project {
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+  id          String    @id @default(uuid())
+  title       String
+  description String?
+  image       String?
+  status      Status    @default(INPROGRESS)
 }
 
-model SelectProduct {
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
-  deletedAt    DateTime?
-  id           String    @id @default(uuid())
-  tax          Int
-  price        Int
-  productId    String
-  importStatus Boolean
-  product      Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+enum Status {
+  DEPLOY
+  INPROGRESS
+  COMPLETED
 }
